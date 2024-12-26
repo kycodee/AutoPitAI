@@ -1,10 +1,12 @@
 import React from 'react';
+import YearMakeModelBar from './YearMakeModelBar';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-     <h1>AutoPilot AI</h1>
+     <h1>AutoPit AI</h1>
+     <YearMakeModelBar/>
     </div>
   );
 }
