@@ -5,47 +5,26 @@ import FormSelect from 'react-bootstrap/FormSelect';
 
 function YearMakeModelBar() {
     return (
-        <>
-        <FormSelect aria-label="Default select example">
-            <option>Year</option>
+        <div style={{ width: '800px' }}>
+            <FormSelect aria-label="Default select example">
+                <option>Year</option>
                 <option value="1">One</option>
                 <option value="2">Two</option>
                 <option value="3">Three</option>
-        </FormSelect>
-        <FormSelect aria-label="Default select example">
-            <option>Make</option>
+            </FormSelect>
+            <FormSelect aria-label="Default select example">
+                <option>Make</option>
                 <option value="1">One</option>
                 <option value="2">Two</option>
                 <option value="3">Three</option>
-        </FormSelect>
-        <FormSelect aria-label="Default select example">
-            <option>Model</option>
+            </FormSelect>
+            <FormSelect aria-label="Default select example">
+                <option>Model</option>
                 <option value="1">One</option>
                 <option value="2">Two</option>
                 <option value="3">Three</option>
-        </FormSelect>
-        </>
-    //     <Form>
-    //      <select name="" id="">
-    //             <option>Year</option>
-    //             <option value="1">One</option>
-    //             <option value="2">Two</option>
-    //             <option value="3">Three</option>
-    //         </select>
-    //         <select name="" id="">
-    //             <option>Make</option>
-    //             <option value="1">One</option>
-    //             <option value="2">Two</option>
-    //             <option value="3">Three</option>
-    //         </select>
-    //         <select name="" id="">
-    //             <option>Model</option>
-    //             <option value="1">One</option>
-    //             <option value="2">Two</option>
-    //             <option value="3">Three</option>
-    //         </select> 
-    //   </Form>
-            
+            </FormSelect>
+        </div>
     )
 }
 
