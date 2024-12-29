@@ -14,6 +14,7 @@ function App() {
         <YearMakeModelBar />
         <AISearchBar />
         <ToolsNeededBox />
+        <RepairInstructionsBox />
       </Container>
     </div>
   );
