@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { Container } from 'react-bootstrap';
 import YearMakeModelBar from './YearMakeModelBar';
@@ -10,6 +11,14 @@ import './App.css';
 function App() {
 
   const [toolsNeeded, setToolsNeeded] = useState<string[]>([])
+
+
+  function getAllModelYears() {
+    axios.get('https://api.nhtsa.gov/products/vehicle/modelYears?issueType=r')
+    .then((results) => {
+      console.log(results.data.results)
+    })
+  }
 
   function showToolsAndInstructions() {
     if(toolsNeeded.length !== 0){
@@ -30,6 +39,11 @@ function App() {
       )
     }
   }
+
+
+  useEffect(() => {
+    getAllModelYears()
+  }, [])
 
   useEffect(() => {
 
