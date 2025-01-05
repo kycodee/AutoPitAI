@@ -6,17 +6,20 @@ import YearMakeModelBar from './YearMakeModelBar';
 import AISearchBar from './AISearchBar';
 import ToolsNeededBox from './ToolsNeeded';
 import RepairInstructionsBox from './RepairInstructions';
+import { YearsListProps, Year } from './types_YearMakeModel';
 import './App.css';
 
 function App() {
 
   const [toolsNeeded, setToolsNeeded] = useState<string[]>([])
+  const [modelYears, setModelYears] = useState<Year[]>([])
 
 
   function getAllModelYears() {
     axios.get('https://api.nhtsa.gov/products/vehicle/modelYears?issueType=r')
     .then((results) => {
-      console.log(results.data.results)
+      // console.log(results.data.results)
+      setModelYears(results.data.results)
     })
   }
 
@@ -24,7 +27,7 @@ function App() {
     if(toolsNeeded.length !== 0){
       return (
         <Container fluid className="d-flex flex-column justify-content-center  align-items-center ">
-        <YearMakeModelBar />
+        <YearMakeModelBar  years={modelYears} />
         <AISearchBar />
         <ToolsNeededBox />
         <RepairInstructionsBox />
@@ -33,7 +36,7 @@ function App() {
     } else {
       return (
         <Container fluid className="d-flex flex-column justify-content-center  align-items-center ">
-        <YearMakeModelBar />
+        <YearMakeModelBar years={modelYears}/>
         <AISearchBar />
       </Container>
       )
