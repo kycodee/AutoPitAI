@@ -8,50 +8,31 @@ function YearMakeModelBar({ years }: YearsListProps) {
 
 
     const [carMakesOfYear, setCarMakesOfYear] = useState<MakeObj[]>([])
-    const [carYear, setCarYear] = useState('')
+    const [carModelsOfSelectedMake, setCarModelsOfSelectedMake] = useState<ModelObj[]>([])
 
     interface MakeObj {
         ModelYear: string,
         Make: string
     }
 
-    function getAllMakesForModelYear() {
-        axios.get(`api.nhtsa.gov/products/vehicles/makes?modelYear=${carYear}&issueType=r`)
-            .then((results) => {
-                // console.log(results.data.results)
-                setCarMakesOfYear(results.data.results)
-            })
+    interface ModelObj {
+        ModelYear: string,
+        Make: string,
+        Model: string
     }
-
 
     useEffect(() => {
 
-    }, [carMakesOfYear])
-    // function selectModelYear() {
-    //     return (
-    //         <>
-    //             {years.map((year) =>
-    //                 <option value={year.modelYear} key={year.modelYear}>{year.modelYear}</option>
-
-    //             )}
-    //         </>
-    //     )
-    // }
+    }, [carMakesOfYear, carModelsOfSelectedMake])
 
     return (
         <div style={{ width: '800px' }}>
             <FormSelect aria-label="Default select example" onChange={(e) => {
-                // setCarYear(e.target.value)
                 axios.get(`https://api.nhtsa.gov/SafetyRatings/modelyear/${e.target.value}`)
-            .then((results) => {
-                // console.log(results.data.Results)
-                setCarMakesOfYear(results.data.Results)
-            })
-            //     axios.get(`https://api.nhtsa.gov/products/vehicle/makes?modelYear=${e.target.value}&issueType=r`)
-            // .then((results) => {
-            //     // console.log(results.data.results)
-            //     setCarMakesOfYear(results.data.results)
-            // })
+                    .then((results) => {
+                        // console.log(results.data.Results)
+                        setCarMakesOfYear(results.data.Results)
+                    })
             }}>
                 <option>Year</option>
                 {years.map((year) =>
@@ -59,18 +40,23 @@ function YearMakeModelBar({ years }: YearsListProps) {
 
                 )}
             </FormSelect>
-            <FormSelect aria-label="Default select example">
+            <FormSelect aria-label="Default select example" onChange={(e) => {
+                axios.get(`https://api.nhtsa.gov/SafetyRatings/modelyear/${carMakesOfYear[0].ModelYear}/make/${e.target.value}`)
+                    .then((results) => {
+                        console.log(results.data.Results)
+                        setCarModelsOfSelectedMake(results.data.Results)
+                    })
+                }}>
                 <option>Make</option>
                 {carMakesOfYear.map((makesObj) =>
                     <option value={makesObj.Make} key={makesObj.Make}>{makesObj.Make}</option>
-
                 )}
             </FormSelect>
             <FormSelect aria-label="Default select example">
                 <option>Model</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
+                {carModelsOfSelectedMake.map((modelObj) =>
+                    <option value={modelObj.Model} key={modelObj.Model}>{modelObj.Model}</option>
+                )}
             </FormSelect>
         </div>
     )
