@@ -16,12 +16,27 @@ function App() {
 
 
   function getAllModelYears() {
-    axios.get('https://api.nhtsa.gov/products/vehicle/modelYears?issueType=r')
+    axios.get('https://api.nhtsa.gov/SafetyRatings')
     .then((results) => {
-      // console.log(results.data.results)
-      setModelYears(results.data.results)
+      // console.log(results.data.Results)
+      setModelYears(results.data.Results)
     })
   }
+  // function getAllModelYears() {
+  //   axios.get('https://api.nhtsa.gov/products/vehicle/modelYears?issueType=r')
+  //   .then((results) => {
+  //     console.log(results.data.results)
+  //     setModelYears(results.data.results)
+  //   })
+  // }
+
+  // function getAllMakesForModelYear() {
+  //   axios.get('https://api.nhtsa.gov/products/vehicle/modelYears?issueType=r')
+  //   .then((results) => {
+  //     // console.log(results.data.results)
+  //     setModelYears(results.data.results)
+  //   })
+  // }
 
   function showToolsAndInstructions() {
     if(toolsNeeded.length !== 0){

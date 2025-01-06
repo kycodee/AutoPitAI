@@ -3,5 +3,9 @@ export interface YearsListProps {
 }
 
 export interface Year {
-    modelYear: string
+    ModelYear: string,
+    VehicleID: number
 }
+// export interface Year {
+//     modelYear: string
+// }
