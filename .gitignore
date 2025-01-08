@@ -1,2 +1,7 @@
+.env
 node_modules
+package-lock.json
+autoPitApi/bin/Debug/net8.0
+autoPitApi/obj
+autoPitApi/appsettings.Development.json
 frontend/.gitignore

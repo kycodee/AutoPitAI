@@ -43,7 +43,7 @@ function YearMakeModelBar({ years }: YearsListProps) {
             <FormSelect aria-label="Default select example" onChange={(e) => {
                 axios.get(`https://api.nhtsa.gov/SafetyRatings/modelyear/${carMakesOfYear[0].ModelYear}/make/${e.target.value}`)
                     .then((results) => {
-                        console.log(results.data.Results)
+                        // console.log(results.data.Results)
                         setCarModelsOfSelectedMake(results.data.Results)
                     })
                 }}>
