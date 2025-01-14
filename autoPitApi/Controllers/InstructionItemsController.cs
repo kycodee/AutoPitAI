@@ -6,10 +6,13 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using AutoPitApi.Models;
+using OpenAI.Chat;
+using dotenv.net;
+
 
 namespace autoPitApi.Controllers
 {
-    [Route("api/[InstructionItemsController]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class InstructionItemsController : ControllerBase
     {
@@ -24,6 +27,13 @@ namespace autoPitApi.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<InstructionItem>>> GetInstructionItems()
         {
+        //     DotEnv.Load();
+
+        // ChatClient client = new(model: "gpt-4o", apiKey: Environment.GetEnvironmentVariable("OPENAI_API_KEY"));
+
+        // ChatCompletion completion = client.CompleteChat("Say 'this is a test.'");
+
+        // Console.WriteLine($"[ASSISTANT]: {completion.Content[0].Text}");
             return await _context.InstructionItems.ToListAsync();
         }
 
