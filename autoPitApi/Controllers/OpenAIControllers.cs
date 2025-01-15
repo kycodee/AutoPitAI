@@ -21,18 +21,38 @@ public class OpenAiController : ControllerBase
         DotEnv.Load();
     }
 
-    [HttpGet(Name = "GetOpenAiTest")]
-    public IActionResult Get()
+    [HttpGet("{userRequest}")]
+    public IActionResult GetOpenAiTest(string userRequest)
     {
         // ChatClient client = new(model: "gpt-4o-mini", apiKey: "my api key was here");
         ChatClient client = new(model: "gpt-4o-mini", apiKey: Environment.GetEnvironmentVariable("OPENAI_API_KEY"));
 
-        ChatCompletion completion = client.CompleteChat("Tell me what the weather is like in Baton Rouge and give me a couple of events happening in the city this weekend");
+        ChatCompletion completion = client.CompleteChat($"{userRequest}");
+        // ChatCompletion completion = client.CompleteChat("Tell me what the weather is like in Baton Rouge and give me a couple of events happening in the city this weekend");
         // var completion = client.CompleteChat("Say 'this is a test.'");
 
         // Console.WriteLine($"[ASSISTANT]: {completion.Content[0].Text}");
         return Ok($"{completion.Content[0].Text}");
         // return Ok($"{completion.Value}");
     }
+
+    //working version
+    // [HttpGet]
+    // public IActionResult GetOpenAiTest()
+    // {
+    //     // ChatClient client = new(model: "gpt-4o-mini", apiKey: "my api key was here");
+    //     ChatClient client = new(model: "gpt-4o-mini", apiKey: Environment.GetEnvironmentVariable("OPENAI_API_KEY"));
+
+    //     // ChatCompletion completion = client.CompleteChat($"{chatRequest}");
+    //     ChatCompletion completion = client.CompleteChat("Tell me what the weather is like in Baton Rouge and give me a couple of events happening in the city this weekend");
+    //     // var completion = client.CompleteChat("Say 'this is a test.'");
+
+    //     // Console.WriteLine($"[ASSISTANT]: {completion.Content[0].Text}");
+    //     return Ok($"{completion.Content[0].Text}");
+    //     // return Ok($"{completion.Value}");
+    // }
+
+    
+
 }
 
