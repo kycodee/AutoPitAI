@@ -10,7 +10,8 @@ function AISearchBar() {
     function callOpenAIAPIwithUserRequest(questionFromUser: string) {
         axios.get(`http://localhost:5177/api/OpenAi/${questionFromUser}`)
             .then((results) => {
-                // console.log(results.data)
+                console.log(results)
+                console.log(results.data)
                 setChatResponse(results.data)
             })
     }

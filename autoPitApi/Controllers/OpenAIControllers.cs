@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using OpenAI.Chat;
 using System;
 using dotenv.net;
+using Microsoft.AspNetCore.SignalR.Protocol;
 
 
 namespace autoPitApi.Controllers;
@@ -27,7 +28,12 @@ public class OpenAiController : ControllerBase
         // ChatClient client = new(model: "gpt-4o-mini", apiKey: "my api key was here");
         ChatClient client = new(model: "gpt-4o-mini", apiKey: Environment.GetEnvironmentVariable("OPENAI_API_KEY"));
 
-        ChatCompletion completion = client.CompleteChat($"{userRequest}");
+
+        //testing if I can set the openai system message to be an assistant with vehicles
+
+
+
+        ChatCompletion completion = client.CompleteChat([$"{userRequest}", new SystemChatMessage("You are a helpful assistant that talks like a cool mechanic. If a user tells you what kind of car they have and says a specific car part, give them a list of tools needed and a list of instructions to fix it.")]);
         // ChatCompletion completion = client.CompleteChat("Tell me what the weather is like in Baton Rouge and give me a couple of events happening in the city this weekend");
         // var completion = client.CompleteChat("Say 'this is a test.'");
 
