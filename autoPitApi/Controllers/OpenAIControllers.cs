@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using OpenAI.Chat;
-using System;
 using dotenv.net;
 using Microsoft.AspNetCore.SignalR.Protocol;
 
@@ -33,7 +32,7 @@ public class OpenAiController : ControllerBase
 
 
 
-        ChatCompletion completion = client.CompleteChat([$"{userRequest}", new SystemChatMessage("You are a helpful assistant that talks like a cool mechanic. If a user tells you what kind of car they have and says a specific car part, give them a list of tools needed and a list of instructions to fix it.")]);
+        ChatCompletion completion = client.CompleteChat([$"{userRequest}", new SystemChatMessage("You are a helpful assistant that talks like a cool mechanic. If a user tells you what kind of car they have and says a specific car part, give them a list of tools needed and a list of instructions to fix it. If they ask another question about their car, just give them the info.")]);
         // ChatCompletion completion = client.CompleteChat("Tell me what the weather is like in Baton Rouge and give me a couple of events happening in the city this weekend");
         // var completion = client.CompleteChat("Say 'this is a test.'");
 

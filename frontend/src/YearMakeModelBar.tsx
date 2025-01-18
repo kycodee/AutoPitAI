@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, SetStateAction } from "react";
 import axios from "axios";
 import FormSelect from 'react-bootstrap/FormSelect';
-import { YearsListProps, Year } from "./types_YearMakeModel";
+import { YearsListProps, Year, ComponentProps } from "./types_YearMakeModel";
 
 
-function YearMakeModelBar({ years }: YearsListProps) {
+function YearMakeModelBar({ years, changeCarName }: ComponentProps) {
 
 
     const [carMakesOfYear, setCarMakesOfYear] = useState<MakeObj[]>([])
@@ -28,6 +28,7 @@ function YearMakeModelBar({ years }: YearsListProps) {
     return (
         <div style={{ width: '800px' }}>
             <FormSelect aria-label="Default select example" onChange={(e) => {
+                changeCarName(`${e.target.value}`)
                 axios.get(`https://api.nhtsa.gov/SafetyRatings/modelyear/${e.target.value}`)
                     .then((results) => {
                         // console.log(results.data.Results)
@@ -41,6 +42,7 @@ function YearMakeModelBar({ years }: YearsListProps) {
                 )}
             </FormSelect>
             <FormSelect aria-label="Default select example" onChange={(e) => {
+                changeCarName((prevName) => prevName + " " + e.target.value) 
                 axios.get(`https://api.nhtsa.gov/SafetyRatings/modelyear/${carMakesOfYear[0].ModelYear}/make/${e.target.value}`)
                     .then((results) => {
                         // console.log(results.data.Results)
@@ -52,7 +54,9 @@ function YearMakeModelBar({ years }: YearsListProps) {
                     <option value={makesObj.Make} key={makesObj.Make}>{makesObj.Make}</option>
                 )}
             </FormSelect>
-            <FormSelect aria-label="Default select example">
+            <FormSelect aria-label="Default select example" onChange={(e) => {
+                changeCarName((prevName) => prevName + " " + e.target.value)
+            }}>
                 <option>Model</option>
                 {carModelsOfSelectedMake.map((modelObj) =>
                     <option value={modelObj.Model} key={modelObj.Model}>{modelObj.Model}</option>

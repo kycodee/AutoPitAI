@@ -13,7 +13,13 @@ function App() {
 
   const [toolsNeeded, setToolsNeeded] = useState<string[]>([])
   const [modelYears, setModelYears] = useState<Year[]>([])
+  const [currentCarName, setCurrentCarName] = useState<string>("")
+  // const [query, setQuery] = useState("")
 
+
+  // function changeCarName(name: string) {
+  //   setCurrentCarName(name)
+  // }
 
   function getAllModelYears() {
     axios.get('https://api.nhtsa.gov/SafetyRatings')
@@ -27,8 +33,10 @@ function App() {
     if (toolsNeeded.length !== 0) {
       return (
         <Container fluid className="d-flex flex-column justify-content-center  align-items-center ">
-          <YearMakeModelBar years={modelYears} />
-          <AISearchBar />
+          {/* <YearMakeModelBar years={modelYears}/>
+          <AISearchBar /> */}
+          <YearMakeModelBar years={modelYears} changeCarName={setCurrentCarName} />
+          <AISearchBar currentCarName={currentCarName}/>
           <ToolsNeededBox />
           <RepairInstructionsBox />
         </Container>
@@ -36,8 +44,8 @@ function App() {
     } else {
       return (
         <Container fluid className="d-flex flex-column justify-content-center  align-items-center ">
-          <YearMakeModelBar years={modelYears} />
-          <AISearchBar />
+          <YearMakeModelBar years={modelYears} changeCarName={setCurrentCarName}/>
+          <AISearchBar currentCarName={currentCarName}/>
         </Container>
       )
     }

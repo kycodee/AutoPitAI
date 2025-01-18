@@ -1,8 +1,9 @@
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 import { useState } from 'react';
+import { AISearchBarProps } from './types_YearMakeModel';
 
-function AISearchBar() {
+function AISearchBar({currentCarName}: AISearchBarProps) {
 
     const [userRequest, setUserRequest] = useState("")
     const [chatResponse, setChatResponse] = useState("")
@@ -37,6 +38,7 @@ function AISearchBar() {
             />
             <Button variant="primary" style={{ display: 'block', marginTop: '20px', width: '800px' }}
                 onClick={() => {
+                    console.log(currentCarName)
                     callOpenAIAPIwithUserRequest(userRequest)
                 }}>Search</Button>
             {showResponseIfThere()}
