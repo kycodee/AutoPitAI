@@ -24,6 +24,10 @@
   color: white;
 }
 
+.Landing-header {
+  animation: bounce .8s ease infinite alternate;
+}
+
 .App-link {
   color: #61dafb;
 }
@@ -34,5 +38,11 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+@keyframes bounce {
+  100%{
+    transform: translateY(-40px);
   }
 }

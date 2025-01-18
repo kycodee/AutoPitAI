@@ -5,6 +5,7 @@ import { Container } from 'react-bootstrap';
 import YearMakeModelBar from './YearMakeModelBar';
 import AISearchBar from './AISearchBar';
 import ToolsNeededBox from './ToolsNeeded';
+import LandingPage from './landing';
 import RepairInstructionsBox from './RepairInstructions';
 import { YearsListProps, Year } from './types_YearMakeModel';
 import './App.css';
@@ -28,6 +29,13 @@ function App() {
         setModelYears(results.data.Results)
       })
   }
+
+  function showLandingPageInitially() {
+    return (
+      <LandingPage />
+    )
+  }
+
 
   function showToolsAndInstructions() {
     if (toolsNeeded.length !== 0) {
@@ -62,10 +70,21 @@ function App() {
 
   return (
     <div className="App" >
+      {/* <Container>
       <h1 onClick={() => {
         const tools = ['socket', 'wrench', 'screwdriver']
         setToolsNeeded(tools)
       }}>AutoPit AI</h1>
+      </Container> */}
+      <Container
+      fluid
+      className="d-flex justify-content-center flex-column align-items-center"
+      style={{ height: '100vh' }}
+    >
+      <h1 style={{ fontSize: '80px'}}>AutoPitAI</h1>
+      <span className='Landing-header' style={{ fontSize: '80px', display: 'block'}}>⬇︎</span>
+      {/* <h1  className='Landing-header' style={{ fontSize: '80px'}}>AutoPitAI</h1> */}
+    </Container>
       {showToolsAndInstructions()}
     </div>
   );
