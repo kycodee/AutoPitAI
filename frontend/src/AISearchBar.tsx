@@ -11,8 +11,8 @@ function AISearchBar({currentCarName}: AISearchBarProps) {
     function callOpenAIAPIwithUserRequest(questionFromUser: string) {
         axios.get(`http://localhost:5177/api/OpenAi/${questionFromUser}`)
             .then((results) => {
-                console.log(results)
-                console.log(results.data)
+                // console.log(results)
+                // console.log(results.data)
                 setChatResponse(results.data)
             })
     }
@@ -39,7 +39,7 @@ function AISearchBar({currentCarName}: AISearchBarProps) {
             <Button variant="primary" style={{ display: 'block', marginTop: '20px', width: '800px' }}
                 onClick={() => {
                     console.log(currentCarName)
-                    callOpenAIAPIwithUserRequest(userRequest)
+                    callOpenAIAPIwithUserRequest(`My car is a ${currentCarName}. ${userRequest}`)
                 }}>Search</Button>
             {showResponseIfThere()}
         </div>
