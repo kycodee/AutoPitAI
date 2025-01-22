@@ -1,7 +1,9 @@
 import React from 'react';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
-import { Container, Button } from 'react-bootstrap';
+import Container from 'react-bootstrap/Container';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 import YearMakeModelBar from './YearMakeModelBar';
 import AISearchBar from './AISearchBar';
 import ToolsNeededBox from './ToolsNeeded';
@@ -9,6 +11,7 @@ import LandingPage from './landing';
 import RepairInstructionsBox from './RepairInstructions';
 import { YearsListProps, Year } from './types_YearMakeModel';
 import toolImage from './pexels-dmitry-demidov-515774-6789021.jpg'
+import YearMakeModelModal from './YearMakeModelModal';
 import './App.css';
 
 function App() {
@@ -16,6 +19,7 @@ function App() {
   const [toolsNeeded, setToolsNeeded] = useState<string[]>([])
   const [modelYears, setModelYears] = useState<Year[]>([])
   const [currentCarName, setCurrentCarName] = useState<string>("")
+  const [modalShow, setModalShow] = useState(false);
   // const [query, setQuery] = useState("")
 
 
@@ -97,9 +101,13 @@ function App() {
           width: '100vw',
         }}
       >
-        <h1 style={{ fontSize: '80px' }}>AutoPitAI</h1>
-        <span className='Landing-header' style={{ fontSize: '80px', display: 'block', marginTop: '10px' }}>⬇︎</span>
-        <Button style={{ backgroundColor: 'red' }} size='lg'>Fix My Car!</Button>
+        <h1 style={{ fontSize: '80px', color: 'red' }}>AutoPitAI</h1>
+        <span className='Landing-header' style={{ fontSize: '80px', display: 'block', marginTop: '10px', color: 'blue' }}>⬇︎</span>
+        <Button style={{ backgroundColor: 'red' }} size='lg' onClick={() => setModalShow(true)}>Fix My Car!</Button>
+        <YearMakeModelModal
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+      />
         {/* <h1  className='Landing-header' style={{ fontSize: '80px'}}>AutoPitAI</h1> */}
       </Container>
       {showToolsAndInstructions()}
