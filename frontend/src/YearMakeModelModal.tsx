@@ -30,24 +30,19 @@ function YearMakeModelModal(props: any) {
             size="lg"
             aria-labelledby="contained-modal-title-vcenter"
             centered
-
+            
         >
             <Modal.Header closeButton >
                 <Modal.Title id="contained-modal-title-vcenter">
-                    Tell us about your vehicle...
+                    Select the year, make, and model of your ride...
                 </Modal.Title>
             </Modal.Header>
-            <Modal.Body>
-                <h4>Centered Modal</h4>
+            <Modal.Body style={{alignItems: 'center', textAlign: 'center'}}>
                 <YearMakeModelBar years={modelYears} changeCarName={setCurrentCarName} />
-                <p>
-                    Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-                    dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
-                    consectetur ac, vestibulum at eros.
-                </p>
+                <AISearchBar currentCarName={currentCarName} />
             </Modal.Body>
             <Modal.Footer>
-                <Button onClick={props.onHide}>Close</Button>
+                <Button onClick={props.onHide} style={{backgroundColor: 'red'}}>Close</Button>
             </Modal.Footer>
         </Modal>
     );

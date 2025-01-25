@@ -26,7 +26,8 @@ function YearMakeModelBar({ years, changeCarName }: ComponentProps) {
     }, [carMakesOfYear, carModelsOfSelectedMake])
 
     return (
-        <div style={{ width: '800px' }}>
+        <div >
+        {/* <div style={{ width: '650px' }}> */}
             <FormSelect aria-label="Default select example" onChange={(e) => {
                 changeCarName(`${e.target.value}`)
                 axios.get(`https://api.nhtsa.gov/SafetyRatings/modelyear/${e.target.value}`)
