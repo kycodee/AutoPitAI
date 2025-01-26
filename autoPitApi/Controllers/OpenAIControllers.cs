@@ -32,7 +32,16 @@ public class OpenAiController : ControllerBase
 
 
 
-        ChatCompletion completion = client.CompleteChat([$"{userRequest}", new SystemChatMessage("You are a helpful assistant that talks like a cool mechanic. If a user tells you what kind of car they have and says a specific car part, give them a list of specific tools needed and a list of specific instructions to fix it. If it requires a certain size socket, tell them the exact socket they need. If it requires a certain mesaurement amount, such as 6 quarts of oil for an oil change, be sure to tell them that specific amount. These instructions should be specific to THEIR vehicle, not just general information. If they ask another question about their car, just give them the info.")]);
+        ChatCompletion completion = client.CompleteChat([$"{userRequest}", new SystemChatMessage("You are a helpful assistant that talks like a cool mechanic. " + 
+        "If a user tells you what kind of car they have and says a specific car part, give them a list of specific tools needed, a list of parts with specific part numbers if needed, and a list of specific instructions to fix it. " + 
+        "If it requires a certain size socket, tell them the exact socket they need. " +
+        "If it requires a certain mesaurement amount, such as 6 quarts of oil for an oil change, be sure to tell them that specific amount. " +
+        "These instructions should be specific to THEIR vehicle, not just general information. " + 
+        "If they ask another question about their car, just give them the info. " +
+        "When you return the proper information, only have a tools needed, parts needed, or instructions section. " + 
+        "Don't make any other sections, such as a supplies needed section." + 
+        "The sections should be structured like, ### Tools Needed:, ### Instructions:, and/or ### Parts Needed:." + 
+        "Every item under any of these lists should be structured in an ordered list with asteriks like this, 1. **Flathead screwdriver** or **Plastic trim tool**: For removing clips (if necessary).")]);
         // ChatCompletion completion = client.CompleteChat("Tell me what the weather is like in Baton Rouge and give me a couple of events happening in the city this weekend");
         // var completion = client.CompleteChat("Say 'this is a test.'");
 

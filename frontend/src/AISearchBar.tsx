@@ -23,7 +23,12 @@ function AISearchBar({ currentCarName }: AISearchBarProps) {
 
             // setChatResponse(chatResponse.slice(0, chatResponse.indexOf("#")))
             //Tools Needed ordered list
-            const toolsNeededStr = chatResponse.slice(chatResponse.indexOf("### Tools Needed:"), chatResponse.indexOf("### Instructions"))
+            let toolsNeededStr;
+            // if(chatResponse.includes("### Parts Needed")){
+            // } else {
+            //     toolsNeededStr = chatResponse.slice(chatResponse.indexOf("### Tools Needed:"), chatResponse.indexOf("### Instructions"))
+            // }
+            toolsNeededStr = chatResponse.slice(chatResponse.indexOf("### Tools Needed:"), chatResponse.indexOf("### Parts Needed"))
             let toolsNeededArr = toolsNeededStr.split(". **")
             for(let i = 0; i < toolsNeededArr.length; i++){
                 toolsNeededArr[i] = toolsNeededArr[i].slice(0, -1).trim()
@@ -32,14 +37,43 @@ function AISearchBar({ currentCarName }: AISearchBarProps) {
                 }
             }
             toolsNeededArr.shift()
-            // toolsNeeded
-            // console.log(toolsNeeded)
+
+
+
+            let partsNeededStr;
+            partsNeededStr = chatResponse.slice(chatResponse.indexOf("### Parts Needed:"), chatResponse.indexOf("### Instructions"))
+            let partsNeededArr = partsNeededStr.split(". **")
+            for(let i = 0; i < partsNeededArr.length; i++){
+                partsNeededArr[i] = partsNeededArr[i].slice(0, -1).trim()
+                if(i !== 0){
+                  partsNeededArr[i] = "**" + partsNeededArr[i]
+                }
+            }
+            partsNeededArr.shift()
+
+            let instructionsStr;
+            instructionsStr = chatResponse.slice(chatResponse.indexOf("### Instructions:"))
+            let instructionsArr = instructionsStr.split(". **")
+            for(let i = 0; i < instructionsArr.length; i++){
+                instructionsArr[i] = instructionsArr[i].slice(0, -1).trim()
+                if(i !== 0){
+                    instructionsArr[i] = "**" + instructionsArr[i]
+                }
+            }
+            instructionsArr.shift()
+
+
+
 
             return (
                 <div>
                     <h3>{chatResponse.slice(0, chatResponse.indexOf("#"))}</h3>
                     <h1>Tools Needed:</h1>
-                    <ol>{toolsNeededArr.map(tool => (<li key={tool}>{tool}</li>))}</ol>
+                    <ul>{toolsNeededArr.map(tool => (<li style={{listStyleType: 'none'}} key={tool}>{tool}</li>))}</ul>
+                    <h1>Parts Needed:</h1>
+                    <ul>{partsNeededArr.map(part => (<li style={{listStyleType: 'none'}} key={part}>{part}</li>))}</ul>
+                    <h1>Instructions:</h1>
+                    <ol>{instructionsArr.map(instruction => (<li key={instruction}>{instruction}</li>))}</ol>
                 </div>
             )
 
