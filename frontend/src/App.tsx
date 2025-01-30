@@ -133,7 +133,7 @@ function App() {
       </Form>
         {/* <h1  className='Landing-header' style={{ fontSize: '80px'}}>AutoPitAI</h1> */}
       </Container>
-      {showToolsAndInstructions()}
+      {/* {showToolsAndInstructions()} */}
     </div>
   );
 }
