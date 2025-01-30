@@ -22,6 +22,7 @@ function AISearchBar({ currentCarName }: AISearchBarProps) {
 
 
             // setChatResponse(chatResponse.slice(0, chatResponse.indexOf("#")))
+            console.log(chatResponse)
             //Tools Needed ordered list
             let toolsNeededStr;
             // if(chatResponse.includes("### Parts Needed")){

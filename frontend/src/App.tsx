@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 import YearMakeModelBar from './YearMakeModelBar';
 import AISearchBar from './AISearchBar';
@@ -64,6 +65,23 @@ function App() {
     }
   }
 
+  function handleGoogleLogin() {
+      // Make the GET request to the backend API to trigger the Google login
+    axios
+    .get(`http://localhost:5177/api/GoogleLogin/login`)  // You can change the endpoint as per your backend
+    .then((response) => {
+      console.log('Google login response:', response);
+      // // You can store the token, redirect, or update the UI here
+      // // For example, you could redirect or display the login success message
+      window.location.href = 'airbnb.com'; // or wherever you want to go after login
+      // window.location.href = response.data.redirectUrl;  // Redirect URL returned from backend
+      console.log('Successfully triggered Google login redirect');
+    })
+    .catch((error) => {
+      console.error('Google login error:', error);
+    });
+  }
+
 
   useEffect(() => {
     getAllModelYears()
@@ -108,6 +126,11 @@ function App() {
         show={modalShow}
         onHide={() => setModalShow(false)}
       />
+      <Form action='http://localhost:5177/api/GoogleLogin/login' method='get'>
+      <Button style={{marginTop: '20px'}}  type='submit'>Login with Google</Button>
+      {/* <Button style={{marginTop: '20px'}}  onClick={handleGoogleLogin}>Login with Google</Button> */}
+
+      </Form>
         {/* <h1  className='Landing-header' style={{ fontSize: '80px'}}>AutoPitAI</h1> */}
       </Container>
       {showToolsAndInstructions()}
