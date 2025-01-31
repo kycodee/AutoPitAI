@@ -53,10 +53,16 @@ namespace autoPitApi.Controllers
                     {
                         //Now add the values on claim and redirect to the page to be accessed after successful login
                         var details = authenticateResult.Principal.Claims.ToList();
+                        foreach (var claim in authenticateResult.Principal.Claims)
+                        {
+                            Console.WriteLine($"Claim Type: {claim.Type}, Claim Value: {claim.Value}");
+                        }
+                        // Console.WriteLine($"{authenticateResult.Principal.Claims}");
                         claimsIdentity.AddClaim(authenticateResult.Principal.FindFirst(ClaimTypes.NameIdentifier)!);// Full Name Of The User
                         claimsIdentity.AddClaim(authenticateResult.Principal.FindFirst(ClaimTypes.Email)!); // Email Address of The User
                         await HttpContext.SignInAsync("Application", new ClaimsPrincipal(claimsIdentity));
-                        return Redirect("https://www.airbnb.com");
+                        // return Redirect("https://www.airbnb.com");
+                        return Redirect("http://localhost:3000/tools");
                     }
                 }
             }

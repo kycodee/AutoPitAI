@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using AutoPitApi.Models;
 using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using System.Security.Claims;
 using dotenv.net;
 using Microsoft.AspNetCore.Identity;
 var builder = WebApplication.CreateBuilder(args);
@@ -33,6 +34,16 @@ builder.Services.AddAuthentication(o =>
             {
                 o.ClientId = Environment.GetEnvironmentVariable("GOOGLE_CLIENT_ID")!;;
                 o.ClientSecret = Environment.GetEnvironmentVariable("GOOGLE_CLIENT_SECRET")!;
+                // o.Scope.Add("https://www.googleapis.com/auth/userinfo.profile");
+                o.Scope.Add("profile");
+                o.Events.OnCreatingTicket = (context) =>
+                    {                      
+                        var picture = context.User.GetProperty("picture").GetString();
+
+                        context.Identity!.AddClaim(new Claim("picture", picture!));
+
+                        return Task.CompletedTask;
+                    };
             });
 
 
