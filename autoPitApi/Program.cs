@@ -13,7 +13,7 @@ DotEnv.Load();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddDbContext<InstructionContext>(opt =>
-    opt.UseInMemoryDatabase("InstructionList"));
+    opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowSpecificOrigin",
