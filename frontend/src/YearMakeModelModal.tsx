@@ -15,7 +15,6 @@ function YearMakeModelModal(props: any) {
     function getAllModelYears() {
         axios.get('https://api.nhtsa.gov/SafetyRatings')
             .then((results) => {
-                // console.log(results.data.Results)
                 setModelYears(results.data.Results)
             })
     }

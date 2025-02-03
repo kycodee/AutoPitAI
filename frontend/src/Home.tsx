@@ -4,13 +4,7 @@ import { useState, useEffect } from 'react';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import Modal from 'react-bootstrap/Modal';
-import YearMakeModelBar from './YearMakeModelBar';
-import AISearchBar from './AISearchBar';
-import ToolsNeededBox from './ToolsNeeded';
-import LandingPage from './Home';
-import RepairInstructionsBox from './RepairInstructions';
-import { YearsListProps, Year } from './types_YearMakeModel';
+import { Year } from './types_YearMakeModel';
 import toolImage from './pexels-dmitry-demidov-515774-6789021.jpg'
 import YearMakeModelModal from './YearMakeModelModal';
 import './App.css';
@@ -30,34 +24,9 @@ function Home() {
       })
   }
 
-  // function showLandingPageInitially() {
-  //   return (
-  //     <LandingPage />
-  //   )
-  // }
 
+  
 
-  // function showToolsAndInstructions() {
-  //   if (toolsNeeded.length !== 0) {
-  //     return (
-  //       <Container fluid className="d-flex flex-column justify-content-center  align-items-center ">
-  //         {/* <YearMakeModelBar years={modelYears}/>
-  //         <AISearchBar /> */}
-  //         <YearMakeModelBar years={modelYears} changeCarName={setCurrentCarName} />
-  //         <AISearchBar currentCarName={currentCarName} />
-  //         <ToolsNeededBox />
-  //         <RepairInstructionsBox />
-  //       </Container>
-  //     )
-  //   } else {
-  //     return (
-  //       <Container fluid className="d-flex flex-column justify-content-center  align-items-center ">
-  //         <YearMakeModelBar years={modelYears} changeCarName={setCurrentCarName} />
-  //         <AISearchBar currentCarName={currentCarName} />
-  //       </Container>
-  //     )
-  //   }
-  // }
 
   function handleGoogleLogin() {
       // Make the GET request to the backend API to trigger the Google login
@@ -105,12 +74,9 @@ function Home() {
         show={modalShow}
         onHide={() => setModalShow(false)}
       />
-      <Form action='http://localhost:5177/api/GoogleLogin/login' method='get'>
+      {/* <Form action='http://localhost:5177/api/GoogleLogin/login' method='get'>
       <Button style={{marginTop: '20px'}}  type='submit'>Login with Google</Button>
-      {/* <Button style={{marginTop: '20px'}}  onClick={handleGoogleLogin}>Login with Google</Button> */}
-
-      </Form>
-        {/* <h1  className='Landing-header' style={{ fontSize: '80px'}}>AutoPitAI</h1> */}
+      </Form> */}
       </Container>
   );
 }

@@ -27,13 +27,7 @@ namespace autoPitApi.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<InstructionItem>>> GetInstructionItems()
         {
-        //     DotEnv.Load();
-
-        // ChatClient client = new(model: "gpt-4o", apiKey: Environment.GetEnvironmentVariable("OPENAI_API_KEY"));
-
-        // ChatCompletion completion = client.CompleteChat("Say 'this is a test.'");
-
-        // Console.WriteLine($"[ASSISTANT]: {completion.Content[0].Text}");
+    
             return await _context.InstructionItems.ToListAsync();
         }
 
@@ -90,7 +84,6 @@ namespace autoPitApi.Controllers
             _context.InstructionItems.Add(instructionItem);
             await _context.SaveChangesAsync();
 
-            // return CreatedAtAction("GetInstructionItem", new { id = instructionItem.Id }, instructionItem);
             return CreatedAtAction(nameof(GetInstructionItem), new { id = instructionItem.Id }, instructionItem);
         }
 

@@ -19,6 +19,3 @@ export interface AISearchBarProps {
 export interface ComponentProps extends YearsListProps {
     changeCarName: React.Dispatch<SetStateAction<string>>; // Setter function for state
 }
-// export interface Year {
-//     modelYear: string
-// }

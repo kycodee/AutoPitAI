@@ -21,14 +21,10 @@ function AISearchBar({ currentCarName }: AISearchBarProps) {
         if (chatResponse !== "") {
 
 
-            // setChatResponse(chatResponse.slice(0, chatResponse.indexOf("#")))
             console.log(chatResponse)
             //Tools Needed ordered list
             let toolsNeededStr;
-            // if(chatResponse.includes("### Parts Needed")){
-            // } else {
-            //     toolsNeededStr = chatResponse.slice(chatResponse.indexOf("### Tools Needed:"), chatResponse.indexOf("### Instructions"))
-            // }
+           
             toolsNeededStr = chatResponse.slice(chatResponse.indexOf("### Tools Needed:"), chatResponse.indexOf("### Parts Needed"))
             let toolsNeededArr = toolsNeededStr.split(". **")
             for(let i = 0; i < toolsNeededArr.length; i++){
@@ -83,7 +79,6 @@ function AISearchBar({ currentCarName }: AISearchBarProps) {
 
     return (
         <div style={{ marginTop: '30px', alignItems: 'center' }}>
-            {/* <h2>How can I assist you with your vehicle today?</h2> */}
             <input type="text" style={{
                 width: '95%',
                 height: '40px',
@@ -91,13 +86,11 @@ function AISearchBar({ currentCarName }: AISearchBarProps) {
                 borderRadius: '7px'
             }}
             placeholder="Please type the car part you'd like me to replace, or tell me about the issue you'd like me to fix."
-                // <input type="text" style={{ width: '800px', height: '40px', marginTop: '30px', borderRadius: '7px' }}
                 onChange={(e) => {
                     setUserRequest(e.target.value)
                 }}
             />
             <Button variant="primary" style={{ display: 'block', marginTop: '20px', marginLeft: 'auto', marginRight: 'auto', width: '95%' }}
-                // <Button variant="primary" style={{ display: 'block', marginTop: '20px', width: '800px' }}
                 onClick={() => {
                     console.log(currentCarName)
                     callOpenAIAPIwithUserRequest(`My car is a ${currentCarName}. ${userRequest}`)

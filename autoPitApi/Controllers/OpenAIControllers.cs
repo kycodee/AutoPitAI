@@ -43,30 +43,12 @@ public class OpenAiController : ControllerBase
         "The sections should be structured like, ### Tools Needed:, ### Instructions:, and/or ### Parts Needed:." + 
         "The instructions should be structured like, 1. **Safety First**: Make sure your car is parked on a flat surface, and turn off the ignition. Pop the hood and secure it with the prop rod." + 
         "Every item under any of these lists should be structured in an ordered list with asteriks like this, 1. **Flathead screwdriver** or **Plastic trim tool**: For removing clips (if necessary).")]);
-        // ChatCompletion completion = client.CompleteChat("Tell me what the weather is like in Baton Rouge and give me a couple of events happening in the city this weekend");
-        // var completion = client.CompleteChat("Say 'this is a test.'");
+   
 
-        // Console.WriteLine($"[ASSISTANT]: {completion.Content[0].Text}");
         return Ok($"{completion.Content[0].Text}");
-        // return Ok($"{completion.Value}");
     }
 
-    //working version
-    // [HttpGet]
-    // public IActionResult GetOpenAiTest()
-    // {
-    //     // ChatClient client = new(model: "gpt-4o-mini", apiKey: "my api key was here");
-    //     ChatClient client = new(model: "gpt-4o-mini", apiKey: Environment.GetEnvironmentVariable("OPENAI_API_KEY"));
-
-    //     // ChatCompletion completion = client.CompleteChat($"{chatRequest}");
-    //     ChatCompletion completion = client.CompleteChat("Tell me what the weather is like in Baton Rouge and give me a couple of events happening in the city this weekend");
-    //     // var completion = client.CompleteChat("Say 'this is a test.'");
-
-    //     // Console.WriteLine($"[ASSISTANT]: {completion.Content[0].Text}");
-    //     return Ok($"{completion.Content[0].Text}");
-    //     // return Ok($"{completion.Value}");
-    // }
-
+  
     
 
 }
